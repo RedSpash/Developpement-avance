@@ -3,6 +3,7 @@
 const Glue = require('@hapi/glue');
 const Exiting = require('exiting');
 const Manifest = require('./manifest');
+const Dotenv = require("dotenv");
 
 exports.deployment = async ({ start } = {}) => {
 
@@ -21,7 +22,6 @@ exports.deployment = async ({ start } = {}) => {
 };
 
 if (require.main === module) {
-
     exports.deployment({ start: true });
 
     process.on('unhandledRejection', (err) => {
