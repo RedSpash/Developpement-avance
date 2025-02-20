@@ -60,6 +60,6 @@ module.exports = [{
         }
     },
     handler: async (request, h) => {
-        return await request.services().patch(request.params.id, request.payload);
+        return await request.services().update(request.params.id, request.payload);
     }
 }];
