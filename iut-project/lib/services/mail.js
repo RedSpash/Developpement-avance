@@ -1,22 +1,15 @@
 'use strict';
 
 const { Service } = require('@hapipal/schmervice');
-const Boom = require('@hapi/boom');
-const Jwt = require('@hapi/jwt');
 const nodemailer = require('nodemailer');
 const Dotenv = require("dotenv");
 
-Dotenv.config({ path: `.env` });
+Dotenv.config();
 
 module.exports = class MailService extends Service {
 
-    send(User){
-        return this.sendWelcomeEmail(User.email, User.firstName);
-    }
-
-
-    async sendWelcomeEmail(to, name) {
-        const transporter = nodemailer.createTransport({
+    createTransporter() {
+        return nodemailer.createTransport({
             host: process.env.EMAIL_HOST,
             port: process.env.EMAIL_PORT,
             auth: {
@@ -24,10 +17,16 @@ module.exports = class MailService extends Service {
                 pass: process.env.EMAIL_PASS
             }
         });
+    }
+
+
+    async sendWelcomeEmail(to, name) {
+        console.log(process.env.EMAIL_HOST);
+        const transporter = this.createTransporter()
 
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: to,
+            to: to.email,
             subject: 'Bienvenue',
             text: `Bienvenue ${name},\n Merci de vous être inscrit sur notre site.`
         };
