@@ -39,4 +39,27 @@ module.exports = [{
     }, handler: async (request, h) => {
         return await request.services().delete(request.params.id);
     }
-},];
+},{
+    method: 'patch',
+    path: '/movie/{id}',
+    options: {
+        auth: {
+            scope: ['admin']
+        },
+        tags: ['api'],
+        validate: {
+            params: Joi.object({
+                id: Joi.string().required().description('Identifier of the movie to update')
+            }),
+            payload: Joi.object({
+                title: Joi.string().min(3).example('Interstellar'),
+                description: Joi.string().min(3).example('A movie about space'),
+                releaseDate: Joi.date().example(new Date('2014-11-05')),
+                director: Joi.string().min(3).example('Christopher Nolan')
+            })
+        }
+    },
+    handler: async (request, h) => {
+        return await request.services().patch(request.params.id, request.payload);
+    }
+}];
