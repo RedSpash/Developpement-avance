@@ -21,9 +21,13 @@ module.exports = [
     },
         handler: async (request, h) => {
 
-            const { userService } = request.services();
+            const { userService, mailService } = request.services();
 
-            return await userService.create(request.payload);
+            const user = await userService.create(request.payload);
+
+            await mailService.sendWelcomeEmail(user)
+
+            return user;
         }
     },
     {
