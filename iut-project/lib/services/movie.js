@@ -3,6 +3,7 @@
 const {Service} = require('@hapipal/schmervice');
 const Mail = require('./mail');
 const User = require('./user');
+const Favorite = require('./favorite');
 
 module.exports = class MovieService extends Service {
 
@@ -35,6 +36,17 @@ module.exports = class MovieService extends Service {
         const {Movie} = this.server.models();
 
         await Movie.query().findById(id).patch(movie);
-        return Movie.query().findById(id);
+
+        const users = await Favorite.query().select('user_id', 'mail')
+            .innerJoin('user', 'user.id', 'favorite.user_id')
+            .where('movie_id', '=', id);
+        const editedMovie = Movie.query().findById(id)
+
+        const mail = new Mail();
+        for (const user of users) {
+            await mail.sendPatchMovieNotification(user.mail, editedMovie);
+        }
+
+        return editedMovie;
     }
 };
