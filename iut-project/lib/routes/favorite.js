@@ -27,4 +27,18 @@ module.exports = [{
 
         return await favoriteService.add(request.auth.credentials.id, request.params.id);
     }
-},];
+}, {
+    method: 'DELETE', path: '/favorite/delete/{id}', options: {
+        auth: {
+            scope: ['user']
+        }, tags: ['api'], validate: {
+            params: Joi.object({
+                id: Joi.string().required().description('Identifier of the movie to remove from favorite')
+            })
+        }
+    }, handler: async (request, h) => {
+        const {favoriteService} = request.services();
+
+        return await favoriteService.delete(request.auth.credentials.id, request.params.id);
+    }
+}];
