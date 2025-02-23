@@ -18,18 +18,18 @@ module.exports = class User extends Model {
             password: Joi.string(),
             username: Joi.string(),
             roles: Joi.array().items(Joi.string()).default(['user']),
-            createdAt: Joi.date(),
-            updatedAt: Joi.date()
+            created_at: Joi.date(),
+            updated_at: Joi.date()
         });
     }
 
     $beforeInsert(queryContext) {
-        this.updatedAt = new Date();
-        this.createdAt = this.updatedAt;
+        this.updated_at = new Date();
+        this.created_at = this.updated_at;
     }
 
     $beforeUpdate(opt, queryContext) {
-        this.updatedAt = new Date();
+        this.updated_at = new Date();
     }
 
     static get jsonAttributes() {

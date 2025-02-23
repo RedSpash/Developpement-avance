@@ -21,7 +21,7 @@ module.exports = [{
                 title: Joi.string().min(3).example('Interstellar').required(),
                 director: Joi.string().min(3).example('Christopher Nolan').required(),
                 description: Joi.string().min(3).example('A movie about space').required(),
-                releaseDate: Joi.date().example(new Date('2014-11-05')).required()
+                release_date: Joi.date().example(new Date('2014-11-05')).required()
             })
         }
     }, handler: async (request, h) => {
@@ -54,7 +54,7 @@ module.exports = [{
             payload: Joi.object({
                 title: Joi.string().min(3).example('Interstellar'),
                 description: Joi.string().min(3).example('A movie about space'),
-                releaseDate: Joi.date().example(new Date('2014-11-05')),
+                release_date: Joi.date().example(new Date('2014-11-05')),
                 director: Joi.string().min(3).example('Christopher Nolan')
             })
         }

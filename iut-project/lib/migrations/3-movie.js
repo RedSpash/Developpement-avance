@@ -10,10 +10,10 @@ module.exports = {
             table.increments('id').primary();
             table.string('title').notNull();
             table.string('director').notNull();
-            table.dateTime('releaseDate').notNull();
+            table.dateTime('release_date').notNull();
             table.string('description').notNull();
-            table.dateTime('createdAt').notNull().defaultTo(knex.fn.now());
-            table.dateTime('updatedAt').notNull().defaultTo(knex.fn.now());
+            table.dateTime('created_at').notNull().defaultTo(knex.fn.now());
+            table.dateTime('updated_at').notNull().defaultTo(knex.fn.now());
         });
     },
 

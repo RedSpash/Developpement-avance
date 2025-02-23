@@ -10,8 +10,8 @@ module.exports = {
             table.string('firstName').notNull();
             table.string('lastName').notNull()
 
-            table.dateTime('createdAt').notNull().defaultTo(knex.fn.now());
-            table.dateTime('updatedAt').notNull().defaultTo(knex.fn.now());
+            table.dateTime('created_at').notNull().defaultTo(knex.fn.now());
+            table.dateTime('updated_at').notNull().defaultTo(knex.fn.now());
         });
     },
 
