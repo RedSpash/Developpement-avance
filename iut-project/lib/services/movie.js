@@ -17,4 +17,11 @@ module.exports = class MovieService extends Service {
         const res = await this.server.models().query().deleteById(movieId);
         return res === 1 ? '' : 'An error occurred while deleting the movie';
     }
+
+    async update(id, movie) {
+        const { Movie } = this.server.models();
+
+        await Movie.query().findById(id).patch( movie );
+        return Movie.query().findById(id);
+    }
 };
