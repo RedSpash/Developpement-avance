@@ -6,11 +6,13 @@ const Mail = require('./mail');
 module.exports = class MovieService extends Service {
 
     get() {
-        return this.server.models().query();
+        const { Movie } = this.server.models();
+        return Movie.query();
     }
 
     async create(movie) {
-        return this.server.models().query().insertAndFetch(movie);
+        const { Movie } = this.server.models();
+        return Movie.query().insertAndFetch(movie);
     }
 
     async delete(movieId) {
