@@ -1,6 +1,6 @@
 'use strict';
 
-const { Service } = require('@hapipal/schmervice');
+const {Service} = require('@hapipal/schmervice');
 const nodemailer = require('nodemailer');
 const Dotenv = require("dotenv");
 
@@ -37,4 +37,14 @@ module.exports = class MailService extends Service {
             throw new Error('Error sending email : ' + error);
         }
     };
+
+    async sendNewMovieNotification(to, movie) {
+        await this.createTransporter().sendMail({
+            from: process.env.EMAIL_USER,
+            to,
+            subject: 'Nouveau film',
+            text: 'Un nouveau film \'' + movie.title + '\' a été ajouté!',
+            html: `Venez découvrir le film : ${movie.title}`
+        });
+    }
 }
