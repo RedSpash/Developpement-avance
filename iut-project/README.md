@@ -12,7 +12,7 @@ Avant de lancer le projet, assurez-vous d'avoir installé :
 
 - [Node.js](https://nodejs.org/)
 - [MySQL](https://www.mysql.com/)
-- [Docker](https://www.docker.com/) (pour RabbitMQ si nécessaire)
+- [Docker](https://www.docker.com/) (pour RabbitMQ)
 
 ## Installation
 
@@ -27,14 +27,6 @@ Si RabbitMQ n'est pas encore installé sur votre machine, vous pouvez utiliser D
 ```bash
 docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
 ```
-
-Accédez ensuite au dashboard RabbitMQ via :
-[http://localhost:15672/](http://localhost:15672/)
-
-Identifiants par défaut :
-
-- **Utilisateur** : guest
-- **Mot de passe** : guest
 
 ## Configuration des variables d'environnement
 
