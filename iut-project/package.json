@@ -11,6 +11,7 @@
   },
   "scripts": {
     "start": "node server",
+    "workers": "node workers",
     "test": "lab -a @hapi/code -I \"__core-js_shared__,CSS,regeneratorRuntime,core\" -L",
     "lint": "eslint ."
   },
@@ -20,6 +21,7 @@
     "@hapipal/haute-couture": "4.x.x",
     "@hapipal/schmervice": "^3.0.0",
     "@hapipal/schwifty": "6.x.x",
+    "amqplib": "^0.10.5",
     "joi": "17.x.x",
     "mysql": "^2.18.1",
     "objection": "2.x.x"
