@@ -1,5 +1,6 @@
 'use strict';
 
+const Joi = require("joi");
 module.exports = {
     method: 'GET',
     path: '/exportation/movies',
@@ -11,6 +12,6 @@ module.exports = {
     },
     handler: async (request, h) => {
         const {exportService} = request.services();
-        return await exportService.get(request, request.auth.credentials.email);
+        return await exportService.export(request, request.auth.credentials.email);
     }
 };

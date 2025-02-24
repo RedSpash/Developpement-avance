@@ -8,7 +8,7 @@ Dotenv.config({path: `.env`});
 
 module.exports = class ExportationService extends Service {
 
-    async get(request, to) {
+    async export(request, to) {
         const {movieService} = request.services();
         const movies = await movieService.get();
 
